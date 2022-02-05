@@ -1,21 +1,38 @@
 const fs = require("fs");
 
+// Instead of UserID directly, a token in their browser or app could tell us which ID it is they have been assigned
 function GrabJSON(UserID) {
   const FILE_PATH = `./data/${UserID}.json`;
-  // Gets stopped here
   let file = "";
-  if (fs.existsSync(FILE_PATH)) {
-    file = fs.readFileSync(FILE_PATH, "utf8");
-  } else {
+  if (!(fs.existsSync(FILE_PATH))) {
+    // Translating:
+    /*
+     * 0 : id
+     * 1: allTasks
+     * 2: allRecipes
+     * 3: allGroceries
+     */
     const defaultItem = {
-      id: UserID,
-      allTasks: "0",
-      tasks: {},
-      allRecipes: "0",
-      recipes: {},
-      allGroceries: "0",
-      groceries: {},
-    };
+        0: UserID,
+        1: {
+            "total": 0,
+            "tasks": [{
+
+              }]
+          },
+        2: {
+            "total": 0,
+            "recipes": [{
+
+              }]
+          },
+        3: {
+            "total": 0,
+            "groceries": [{
+
+              }]
+          }
+      };
     const data = JSON.stringify(defaultItem);
     fs.writeFileSync(FILE_PATH, data, "utf8", (err) => {
       if (err) {
@@ -30,23 +47,25 @@ function GrabJSON(UserID) {
 
   let userObject = JSON.parse(file);
 
-  if (!("allTasks" in userObject)) {
-    userObject["allTasks"].push({ total: 0, tasks: {} });
-  }
-
-  console.log(userObject["allTasks"][0]);
-
   return userObject;
 }
 
 function SaveJSON(UserID) {
   const FILE_PATH = `./data/${UserID}.json`;
-  fs.open(FILE_PATH);
   const data = fs.readFileSync(FILE_PATH);
 
   // JSON.stringify for processing the JSON later
+  const filecontents = JSON.stringify(data);
 
-  return elements;
+  fs.writeFileSync(FILE_PATH, filecontents, "utf8", (err) => {
+    if (err) {
+      console.log(`Error creating file: ${err}`);
+    } else {
+      console.log(`Created ${UserID}'s file!`);
+    }
+  })
+
+  return FILE_PATH;
 }
 
 module.exports = { GrabJSON, SaveJSON };
