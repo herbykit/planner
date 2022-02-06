@@ -37,8 +37,6 @@ function GrabJSON(UserID) {
     fs.writeFileSync(FILE_PATH, data, "utf8", (err) => {
       if (err) {
         console.log(`Error creating file: ${err}`);
-      } else {
-        console.log(`Created ${UserID}'s file!`);
       }
     });
   }
@@ -60,10 +58,8 @@ function SaveJSON(UserID) {
   fs.writeFileSync(FILE_PATH, filecontents, "utf8", (err) => {
     if (err) {
       console.log(`Error creating file: ${err}`);
-    } else {
-      console.log(`Created ${UserID}'s file!`);
     }
-  })
+  });
 
   return FILE_PATH;
 }
