@@ -3,7 +3,20 @@ const fs = require("fs");
 
 // Recipes
 // Translates data into JSON formatted and inserts it into the user's JSON storage
+function getItemSyntax( item, number, size ) {
+	// Creates a JSON string to combine with others to create the array
+	// needed in the translateRecipe and translateGrocery function
+}
 
+function combineItems( ...items ) {
+	// combines an unknown size of items to one JSON object
+}
+
+function translateRecipe( ingredients, instructions ) {
+	// Ingredients is an array that matches the structure of the ingredients below already
+	// Instructions is a string that includes \n values as neededd
+	// Inserts the object into the right spot
+}
 /*
  * Example of a bread recipe put into this.
 	"recipeName": [{
@@ -44,6 +57,11 @@ const fs = require("fs");
 // Groceries
 // Translates data into JSON formatted and inserts it into the user's JSON storage
 
+function translateGrocery( groceries ) {
+	// Only here for structural context, most of its functions are performed already
+	// by the time it gets to here. Inserts the values into the right place.
+}
+
 /*
 	"item_name": [{
 		"amount": [{
@@ -67,6 +85,9 @@ const fs = require("fs");
 // Translates data into JSON formatted and inserts it into the user's JSON storage
 
 /*
+* 0: repeats?
+* 1: how often repeats?
+* 2: when it ends?
 	"task_name": [{
 		"description": "example description",
 		"repeats": [{
