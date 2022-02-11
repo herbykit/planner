@@ -17,6 +17,7 @@ test("Generally testing running it a second time after file is generated", () =>
 fs.unlinkSync("./data/123.json");
 
 
+// Testing whether the values were set correctly by default
 const jsonbuilt = JSONQuery.GrabJSON("s2d3f98geasda2");
 test("Testing total in allTasks", () => {
 	expect(jsonbuilt[1]["total"]).toBe(0);
