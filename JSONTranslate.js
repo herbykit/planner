@@ -6,7 +6,7 @@ const fs = require("fs");
 function getItemSyntax(item, number, size) {
   // Creates a JSON string to combine with others to create the array
   // needed in the translateRecipe and translateGrocery function
-  var item_added = {}; // Input salt from tears of no simpler way to create it...
+  let item_added = {}; // Input salt from tears of no simpler way to create it...
   item_added[item] = { amount: 0, size: "null" }; // Creates the structure to fill in
   item_added[item]["amount"] = number; // Resets the number to the correct amount
   item_added[item]["size"] = size; // Resets the size to the correct amount
@@ -17,7 +17,7 @@ function combineItems() {
   // combines an unknown size of items to one JSON object
   // Uses empty argument to allow infinite arguments accessed
   // through the arguments object
-  var fullObject = { 0: {} };
+  let fullObject = { 0: {} };
 
   const keys = Object.keys(arguments);
   for (let i = 0; i < keys.length; i++) {
