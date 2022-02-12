@@ -4,7 +4,7 @@ const fs = require("fs");
 function GrabJSON(UserID) {
   const FILE_PATH = `./data/${UserID}.json`;
   let file = "";
-  if (!(fs.existsSync(FILE_PATH))) {
+  if (!fs.existsSync(FILE_PATH)) {
     // Translating:
     /*
      * 0 : id
@@ -13,26 +13,20 @@ function GrabJSON(UserID) {
      * 3: allGroceries
      */
     const defaultItem = {
-        0: UserID,
-        1: {
-            "total": 0,
-            "tasks": [{
-
-              }]
-          },
-        2: {
-            "total": 0,
-            "recipes": [{
-
-              }]
-          },
-        3: {
-            "total": 0,
-            "groceries": [{
-
-              }]
-          }
-      };
+      0: UserID,
+      1: {
+        total: 0,
+        tasks: [{}],
+      },
+      2: {
+        total: 0,
+        recipes: [{}],
+      },
+      3: {
+        total: 0,
+        groceries: [{}],
+      },
+    };
     const data = JSON.stringify(defaultItem);
     fs.writeFileSync(FILE_PATH, data, "utf8", (err) => {
       if (err) {
