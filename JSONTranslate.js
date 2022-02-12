@@ -21,6 +21,11 @@ function combineItems(items) {
   return items;
 }
 
+// Code gifted from ChocoDream
+const getSubArray = (array, parent) => {
+  return array.find((item) => Object.keys(item)[0] === parent);
+};
+
 function translateRecipe(ingredients, instructions) {
   // Ingredients is an array that matches the structure of the ingredients below already
   // Instructions is a string that includes \n values as neededd
@@ -128,4 +133,5 @@ module.exports = {
   translateGrocery,
   getItemSyntax,
   combineItems,
+  getSubArray,
 };
