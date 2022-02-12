@@ -70,28 +70,34 @@ test("Tests a call with multiple items in combineItems", () => {
 // These pass with an incorrect format
 // It should work without also going down an array
 test("Tests that the first key is garlic_powder", () => {
-  expect(combined2["garlic_powder"]).toBe({
+  expect(
+    JSONTranslate.getSubArray(combined2, "garlic_powder")["garlic_powder"]
+  ).toStrictEqual({
     amount: 1,
     size: "tsp",
   });
 });
 
 test("Tests that the first key is potato", () => {
-  expect(combined2["potato"]).toStrictEqual({
+  expect(
+    JSONTranslate.getSubArray(combined2, "potato")["potato"]
+  ).toStrictEqual({
     amount: 1,
     size: "potato",
   });
 });
 
 test("Tests that the first key is butter", () => {
-  expect(combined2["butter"]).toStrictEqual({
+  expect(
+    JSONTranslate.getSubArray(combined2, "butter")["butter"]
+  ).toStrictEqual({
     amount: 2,
     size: "tbsp",
   });
 });
 
 test("Tests that the first key is water", () => {
-  expect(combined2["water"]).toStrictEqual({
+  expect(JSONTranslate.getSubArray(combined2, "water")["water"]).toStrictEqual({
     amount: 4,
     size: "cups",
   });
