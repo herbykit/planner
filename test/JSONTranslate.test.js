@@ -27,7 +27,7 @@ let item3 = JSONTranslate.getItemSyntax("butter", 2, "tbsp");
 let item4 = JSONTranslate.getItemSyntax("water", 4, "cups");
 
 let combined1 = JSONTranslate.combineItems(item1);
-let combined2 = JSONTranslate.combineItems(item1,item2,item3,item4);
+let combined2 = JSONTranslate.combineItems([item1,item2,item3,item4]);
 // Test adding 1 item in combineItems
 // JS cannot have a value without a key, will have to make up for this in higher level functions
 test('Tests a call with one item in combineItems', () => {
@@ -50,15 +50,15 @@ test('Tests that the size is exactly "tsp"', () => {
 // Only temporarily have extended the object to be human readable
 test('Tests a call with multiple items in combineItems', () => {
 	expect(combined2).toStrictEqual(
-		{0:
-			{"butter":
-			  	{"amount":2,"size":"tbsp"},
-			 "garlic_powder":
+		[
+			"garlic_powder":
 				{'amount':1,'size':"tsp"},
-			 "potato":
-			 	{'amount':1,'size':"potato"},
-			 "water":
+			"potato":
+				{'amount':1,'size':"potato"},
+			"butter":
+			  	{"amount":2,"size":"tbsp"},
+			"water":
 			   	{"amount":4,"size":"cups"}
-			}
-		});
+			
+		]);
 });
