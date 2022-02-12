@@ -67,4 +67,32 @@ test("Tests a call with multiple items in combineItems", () => {
   ]);
 });
 
-// Test that every value is set correctly: key name, amount, size matching
+// These pass with an incorrect format
+// It should work without also going down an array
+test("Tests that the first key is garlic_powder", () => {
+  expect(combined2[0]["garlic_powder"]).toStrictEqual({
+    amount: 1,
+    size: "tsp",
+  });
+});
+
+test("Tests that the first key is garlic_powder", () => {
+  expect(combined2[1]["potato"]).toStrictEqual({
+    amount: 1,
+    size: "potato",
+  });
+});
+
+test("Tests that the first key is garlic_powder", () => {
+  expect(combined2[2]["butter"]).toStrictEqual({
+    amount: 2,
+    size: "tbsp",
+  });
+});
+
+test("Tests that the first key is garlic_powder", () => {
+  expect(combined2[3]["water"]).toStrictEqual({
+    amount: 4,
+    size: "cups",
+  });
+});
