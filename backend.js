@@ -32,74 +32,70 @@ client.on("messageCreate", (message) => {
     const command = message.content.split("LL!")[1];
 
     const JSONUser = JSONQuery.GrabJSON(message.author.id);
-		console.log(JSONUser["allRecipes"]);
-		console.log(JSONUser["allGroceries"]);
-		console.log(JSONUser["allTasks"]);
+    console.log(JSONUser["allRecipes"]);
+    console.log(JSONUser["allGroceries"]);
+    console.log(JSONUser["allTasks"]);
 
-		switch(command) {
-			case "AddRecipe":
-				//
-				break;
-			case "AddGrocery":
-				//
-				break;
-			case "CheckRecipe":
-				//
-				if(JSONUser["allRecipes"] == 0) {
-					message.channel.send("You have no recipes!");
-				} else {
-
-				}
-				break;
-			case "AddChore":
-				//
-				break;
-			case "ListRecipes":
-				if(JSONUser["allRecipes"] == 0) {
-					message.channel.send("You have no recipes!");
-				} else {
-
-				}
-				//
-				break;
-			case "ListGroceries":
-				if(JSONUser["allGroceries"] == 0) {
-					message.channel.send("You have no groceries!");
-				} else {
-
-				}
-				//
-				break;
-			case "ListTasks":
-				if(JSONUser["allTasks"] == 0) {
-					message.channel.send("You have no tasks!");
-				} else {
-
-				}
-			case "UseRecipe":
-				//
-				if(JSONUser["allRecipes"] == 0) {
-					message.channel.send("You have no recipes!");
-				} else {
-
-				}
-				break;
-			case "UseGrocery":
-				//
-				if(JSONUser["allGroceries"] == 0) {
-					message.channel.send("You have no recipes!");
-				} else {
-
-				}
-				break;
-			case "":
-				message.channel.send("Uhhhhhh,,, I don't think that's how this works");
-				break;
-			default:
-				message.channel.send("Yeah uh, that command doesn't exist. Did you type it right?");
-				break;
-		}
-	}
+    switch (command) {
+      case "AddRecipe":
+        //
+        break;
+      case "AddGrocery":
+        //
+        break;
+      case "CheckRecipe":
+        //
+        if (JSONUser["allRecipes"] == 0) {
+          message.channel.send("You have no recipes!");
+        } else {
+        }
+        break;
+      case "AddChore":
+        //
+        break;
+      case "ListRecipes":
+        if (JSONUser["allRecipes"] == 0) {
+          message.channel.send("You have no recipes!");
+        } else {
+        }
+        //
+        break;
+      case "ListGroceries":
+        if (JSONUser["allGroceries"] == 0) {
+          message.channel.send("You have no groceries!");
+        } else {
+        }
+        //
+        break;
+      case "ListTasks":
+        if (JSONUser["allTasks"] == 0) {
+          message.channel.send("You have no tasks!");
+        } else {
+        }
+      case "UseRecipe":
+        //
+        if (JSONUser["allRecipes"] == 0) {
+          message.channel.send("You have no recipes!");
+        } else {
+        }
+        break;
+      case "UseGrocery":
+        //
+        if (JSONUser["allGroceries"] == 0) {
+          message.channel.send("You have no recipes!");
+        } else {
+        }
+        break;
+      case "":
+        message.channel.send("Uhhhhhh,,, I don't think that's how this works");
+        break;
+      default:
+        message.channel.send(
+          "Yeah uh, that command doesn't exist. Did you type it right?"
+        );
+        break;
+    }
+  }
 });
 
 client.login(config.token);
