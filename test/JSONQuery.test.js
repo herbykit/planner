@@ -31,8 +31,8 @@ test("Testing total in allGroceries", () => {
 });
 fs.unlinkSync("./data/s2d3f98geasda2.json");
 
-JSONQuery.GrabJSON("123");
+let object = JSONQuery.GrabJSON("123");
 test("Testing ability to save files", () => {
-  expect(JSONQuery.SaveJSON("123")).toBe("./data/123.json");
+  expect(JSONQuery.SaveJSON("123", object)).toBe("./data/123.json");
 });
 fs.unlinkSync("./data/123.json");

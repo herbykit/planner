@@ -42,9 +42,9 @@ function GrabJSON(UserID) {
   return userObject;
 }
 
-function SaveJSON(UserID) {
+// This is written with the expectation that data is using combineForFile
+function SaveJSON(UserID, data) {
   const FILE_PATH = `./data/${UserID}.json`;
-  const data = fs.readFileSync(FILE_PATH);
 
   // JSON.stringify for processing the JSON later
   const filecontents = JSON.stringify(data);
