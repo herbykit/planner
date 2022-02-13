@@ -67,8 +67,8 @@ test("Tests a call with multiple items in combineItems", () => {
   ]);
 });
 
-// These pass with an incorrect format
-// It should work without also going down an array
+// Test that the structure matches and also tests that it is accessible in an easy way
+// for other code that comes later
 test("Tests that the first key is garlic_powder", () => {
   expect(
     JSONTranslate.getSubArray(combined2, "garlic_powder")["garlic_powder"]
@@ -101,4 +101,17 @@ test("Tests that the first key is water", () => {
     amount: 4,
     size: "cups",
   });
+});
+
+// Testing abiilty to access individual items
+test("Tests that access to the specific amount works", () => {
+  expect(JSONTranslate.getSubArray(combined2, "water")["water"]["amount"]).toBe(
+    4
+  );
+});
+
+test("Tests that access to the specific size works", () => {
+  expect(JSONTranslate.getSubArray(combined2, "water")["water"]["size"]).toBe(
+    "cups"
+  );
 });
