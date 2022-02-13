@@ -1,9 +1,28 @@
-function addToRecipe() {}
+/*
 
-function addToGrocery() {}
+const defaultItem = {
+      0: UserID,
+      1: {
+        total: 0,
+        tasks: [{}],
+      },
+      2: {
+        total: 0,
+        recipes: [{}],
+      },
+      3: {
+        total: 0,
+        groceries: [{}],
+      },
+    };
 
-function addToTask() {}
+    Structure of base.
 
-function combineForFile() {}
+*/
+function addToRecipe(existingJSON, recipeList) {}
 
-module.exports = { addToRecipe, addToGrocery, addToTask, combineForFile };
+function addToGrocery(existingJSON, groceryList) {}
+
+function addToTask(existingJSON, taskList) {}
+
+module.exports = { addToRecipe, addToGrocery, addToTask };
