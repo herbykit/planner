@@ -391,6 +391,7 @@
     "node-gyp-build": "^4.3.0",
     "node-int64": "^0.4.0",
     "node-releases": "^2.0.1",
+    "nodemon": "^2.0.15",
     "nopt": "^5.0.0",
     "normalize-package-data": "^2.5.0",
     "normalize-path": "^3.0.0",
