@@ -115,3 +115,37 @@ test("Tests that access to the specific size works", () => {
     "cups"
   );
 });
+
+test("Tests that the recipe is created correctly", () => {
+  expect(
+    JSONTranslate.translateRecipe(
+      "melted_butter",
+      JSONTranslate.combineItems(item3),
+      "put butter in hot saucepan and wait"
+    )
+  ).toStrictEqual({
+    melted_butter: {
+      ingredients: { butter: { amount: 2, size: "tbsp" } },
+      instructions: "put butter in hot saucepan and wait",
+    },
+  });
+});
+
+test("tests that an empty ingredients doesn't fail", () => {
+  expect(
+    JSONTranslate.translateRecipe("air", JSONTranslate.combineItems())
+  ).toStrictEqual({ air: { ingredients: {}, instructions: "" } });
+});
+
+test("tests that groceries matches combineItems", () => {
+  expect(JSONTranslate.translateGrocery(combined2)).toStrictEqual([
+    { garlic_powder: { amount: 1, size: "tsp" } },
+    { potato: { amount: 1, size: "potato" } },
+    { butter: { amount: 2, size: "tbsp" } },
+    { water: { amount: 4, size: "cups" } },
+  ]);
+});
+
+test("tests that empty groceries returns {}", () => {
+  expect(JSONTranslate.translateGrocery()).toStrictEqual({});
+});

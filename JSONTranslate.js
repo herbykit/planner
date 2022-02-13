@@ -26,10 +26,18 @@ const getSubArray = (array, parent) => {
   return array.find((item) => Object.keys(item)[0] === parent);
 };
 
-function translateRecipe(ingredients, instructions) {
+function translateRecipe(recipeName, ingredientsList, instructionsList = "") {
   // Ingredients is an array that matches the structure of the ingredients below already
   // Instructions is a string that includes \n values as neededd
   // Inserts the object into the right spot
+  // Create key as recipe name
+  let recipe = {};
+  recipe[recipeName] = { ingredients: {}, instructions: {} };
+  // import ingredients and instruction arrays
+  recipe[recipeName].ingredients = ingredientsList;
+  recipe[recipeName].instructions = instructionsList;
+
+  return recipe;
 }
 /*
  * Example of a bread recipe put into this.
@@ -70,10 +78,12 @@ function translateRecipe(ingredients, instructions) {
 
 // Groceries
 // Translates data into JSON formatted and inserts it into the user's JSON storage
-
-function translateGrocery(groceries) {
+function translateGrocery(groceries = combineItems()) {
   // Only here for structural context, most of its functions are performed already
   // by the time it gets to here. Inserts the values into the right place.
+
+  // Put groceries in a list... and return groceries... but combineItems does that...
+  return groceries;
 }
 
 /*
