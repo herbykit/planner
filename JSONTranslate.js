@@ -26,7 +26,7 @@ const getSubArray = (array, parent) => {
   return array.find((item) => Object.keys(item)[0] === parent);
 };
 
-function translateRecipe(recipeName, ingredientsList, instructionsList = "") {
+function createRecipe(recipeName, ingredientsList, instructionsList = "") {
   // Ingredients is an array that matches the structure of the ingredients below already
   // Instructions is a string that includes \n values as neededd
   // Inserts the object into the right spot
@@ -39,6 +39,13 @@ function translateRecipe(recipeName, ingredientsList, instructionsList = "") {
 
   return recipe;
 }
+
+function translateRecipe(recipes) {
+  // Returns an empty set if nothing is specified
+  if (!recipes) return {};
+  return recipes;
+}
+
 /*
  * Example of a bread recipe put into this.
 	"recipeName": [{
@@ -139,6 +146,7 @@ function translateGrocery(groceries = combineItems()) {
 */
 
 module.exports = {
+  createRecipe,
   translateRecipe,
   translateGrocery,
   getItemSyntax,

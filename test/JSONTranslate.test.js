@@ -118,7 +118,7 @@ test("Tests that access to the specific size works", () => {
 
 test("Tests that the recipe is created correctly", () => {
   expect(
-    JSONTranslate.translateRecipe(
+    JSONTranslate.createRecipe(
       "melted_butter",
       JSONTranslate.combineItems(item3),
       "put butter in hot saucepan and wait"
@@ -133,7 +133,7 @@ test("Tests that the recipe is created correctly", () => {
 
 test("tests that an empty ingredients doesn't fail", () => {
   expect(
-    JSONTranslate.translateRecipe("air", JSONTranslate.combineItems())
+    JSONTranslate.createRecipe("air", JSONTranslate.combineItems())
   ).toStrictEqual({ air: { ingredients: {}, instructions: "" } });
 });
 
@@ -148,4 +148,113 @@ test("tests that groceries matches combineItems", () => {
 
 test("tests that empty groceries returns {}", () => {
   expect(JSONTranslate.translateGrocery()).toStrictEqual({});
+});
+
+let recipe1 = JSONTranslate.createRecipe(
+  "melted_butter",
+  JSONTranslate.combineItems([item3]),
+  "put butter in hot saucepan and wait"
+);
+let recipe2 = JSONTranslate.createRecipe(
+  "mashed_potatoes",
+  JSONTranslate.combineItems([item2, item4, item3]),
+  "cook potatoes in water until soft. mash and mix in butter"
+);
+
+test("tests that nothing passed into recipes returns {}", () => {
+  expect(JSONTranslate.translateRecipe()).toStrictEqual({});
+});
+
+let recipeList = JSONTranslate.translateRecipe([recipe1, recipe2]);
+
+test("tests that a multiple item list is created when inputting an array of recipes to translateRecipe", () => {
+  expect(recipeList).toStrictEqual([
+    {
+      melted_butter: {
+        ingredients: [{ butter: { amount: 2, size: "tbsp" } }],
+        instructions: "put butter in hot saucepan and wait",
+      },
+    },
+    {
+      mashed_potatoes: {
+        ingredients: [
+          { potato: { amount: 1, size: "potato" } },
+          { water: { amount: 4, size: "cups" } },
+          { butter: { amount: 2, size: "tbsp" } },
+        ],
+        instructions:
+          "cook potatoes in water until soft. mash and mix in butter",
+      },
+    },
+  ]);
+});
+
+// Testing access to each recipe
+test("testing access to melted_butter recipe", () => {
+  expect(
+    JSONTranslate.getSubArray(recipeList, "melted_butter")["melted_butter"]
+  ).toStrictEqual({
+    ingredients: [{ butter: { amount: 2, size: "tbsp" } }],
+    instructions: "put butter in hot saucepan and wait",
+  });
+});
+
+// testing access to the ingredients
+test("testing access to the ingredient", () => {
+  expect(
+    JSONTranslate.getSubArray(recipeList, "melted_butter")["melted_butter"][
+      "ingredients"
+    ]
+  ).toStrictEqual([
+    {
+      butter: { amount: 2, size: "tbsp" },
+    },
+  ]);
+});
+
+// testing access to the first ingredient
+test("testing access to each ingredient", () => {
+  expect(
+    Object.keys(
+      JSONTranslate.getSubArray(recipeList, "melted_butter")["melted_butter"][
+        "ingredients"
+      ][0]
+    ).length
+  ).toBe(1);
+});
+
+test("testing accesss to individual ingredient amounts", () => {
+  expect(
+    Object.keys(
+      JSONTranslate.getSubArray(recipeList, "melted_butter")["melted_butter"][
+        "ingredients"
+      ][0]
+    )[0]
+  ).toBe("butter");
+});
+
+let ingredient1 = JSONTranslate.getSubArray(recipeList, "melted_butter")[
+  "melted_butter"
+].ingredients;
+
+let ingredients2 = JSONTranslate.getSubArray(recipeList, "mashed_potatoes")[
+  "mashed_potatoes"
+]["ingredients"];
+
+test("testing accesss to individual ingredient amounts", () => {
+  expect(
+    JSONTranslate.getSubArray(ingredient1, "butter")["butter"]["amount"]
+  ).toBe(2);
+});
+
+test("testing access to first potato ingredient size", () => {
+  expect(
+    JSONTranslate.getSubArray(ingredients2, "potato")["potato"]["size"]
+  ).toBe("potato");
+});
+
+test("testing access to amount of another ingredient, water", () => {
+  expect(
+    JSONTranslate.getSubArray(ingredients2, "water")["water"]["amount"]
+  ).toBe(4);
 });
