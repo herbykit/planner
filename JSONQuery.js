@@ -28,11 +28,7 @@ function GrabJSON(UserID) {
       },
     };
     const data = JSON.stringify(defaultItem);
-    fs.writeFileSync(FILE_PATH, data, "utf8", (err) => {
-      if (err) {
-        console.log(`Error creating file: ${err}`);
-      }
-    });
+    fs.writeFileSync(FILE_PATH, data, "utf8");
   }
 
   file = fs.readFileSync(FILE_PATH);
@@ -49,11 +45,7 @@ function SaveJSON(UserID, data) {
   // JSON.stringify for processing the JSON later
   const filecontents = JSON.stringify(data);
 
-  fs.writeFileSync(FILE_PATH, filecontents, "utf8", (err) => {
-    if (err) {
-      console.log(`Error creating file: ${err}`);
-    }
-  });
+  fs.writeFileSync(FILE_PATH, filecontents, "utf8");
 
   return FILE_PATH;
 }
