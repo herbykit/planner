@@ -19,8 +19,18 @@ function searchGroceries(name, ID) {
   // 3 is groceries
   let JSONObject = fileHandler.GrabJSON(ID);
 
+  console.log(
+    Object.keys(
+      JSONTranslate.getSubArray(JSONObject[3]["groceries"], name)
+    )[0] === name
+  );
   // search for the grocery
-  if (JSONTranslate.getSubArray(JSONObject[3]["groceries"], name)) return true;
+  if (
+    Object.keys(
+      JSONTranslate.getSubArray(JSONObject[3]["groceries"], name)
+    )[0] === name
+  )
+    return true;
   else return false;
 }
 
