@@ -28,11 +28,7 @@ function GrabJSON(UserID) {
       },
     };
     const data = JSON.stringify(defaultItem);
-    fs.writeFileSync(FILE_PATH, data, "utf8", (err) => {
-      if (err) {
-        console.log(`Error creating file: ${err}`);
-      }
-    });
+    fs.writeFileSync(FILE_PATH, data, "utf8");
   }
 
   file = fs.readFileSync(FILE_PATH);
@@ -42,18 +38,14 @@ function GrabJSON(UserID) {
   return userObject;
 }
 
-function SaveJSON(UserID) {
+// This is written with the expectation that data is using combineForFile
+function SaveJSON(UserID, data) {
   const FILE_PATH = `./data/${UserID}.json`;
-  const data = fs.readFileSync(FILE_PATH);
 
   // JSON.stringify for processing the JSON later
   const filecontents = JSON.stringify(data);
 
-  fs.writeFileSync(FILE_PATH, filecontents, "utf8", (err) => {
-    if (err) {
-      console.log(`Error creating file: ${err}`);
-    }
-  });
+  fs.writeFileSync(FILE_PATH, filecontents, "utf8");
 
   return FILE_PATH;
 }

@@ -53,8 +53,7 @@ function pushRecipe(ID, recipeName, ingredientList, instructions = "") {
       fileHandler.GrabJSON(ID),
       JSONTranslate.translateRecipe([
         JSONTranslate.createRecipe(recipeName, ingredientList, instructions),
-      ])
-    );
+      ]);
   }
 }
 
