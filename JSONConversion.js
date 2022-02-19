@@ -48,7 +48,6 @@ function addToRecipe(existingJSON, recipeList) {
   for (let i = 0; i < recipeList.length; i++) {
     existingJSON[2].total = total + i + 1;
     existingJSON[2].recipes[total + i] = recipeList[i];
-    console.log(existingJSON[2]["recipes"]);
   }
   return existingJSON;
 }
@@ -60,7 +59,6 @@ function addToGrocery(existingJSON, groceryList) {
   for (let i = 0; i < groceryList.length; i++) {
     existingJSON[3].total = total + i + 1;
     existingJSON[3].groceries[total + i] = groceryList[i];
-    console.log(existingJSON[3]["groceries"]);
   }
   return existingJSON;
 }
