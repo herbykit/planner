@@ -46,8 +46,8 @@ function addToRecipe(existingJSON, recipeList) {
   let array = existingJSON[2];
   let total = array.total;
   for (let i = 0; i < recipeList.length; i++) {
-    existingJSON[2].total = total + 1;
-    existingJSON[2].recipes[total] = recipeList[i];
+    existingJSON[2].total = total + i + 1;
+    existingJSON[2].recipes[total + i] = recipeList[i];
     console.log(existingJSON[2]["recipes"]);
   }
   return existingJSON;
@@ -58,8 +58,8 @@ function addToGrocery(existingJSON, groceryList) {
   let array = existingJSON[3];
   let total = array.total;
   for (let i = 0; i < groceryList.length; i++) {
-    existingJSON[3].total = total + 1;
-    existingJSON[3].groceries[total] = groceryList[i];
+    existingJSON[3].total = total + i + 1;
+    existingJSON[3].groceries[total + i] = groceryList[i];
     console.log(existingJSON[3]["groceries"]);
   }
   return existingJSON;
@@ -72,8 +72,8 @@ function addToTask(existingJSON, taskList) {
   let array = existingJSON[1];
   let total = array.total;
   for (let i = 0; i < taskList.length; i++) {
-    existingJSON[1].total = total + 1;
-    existingJSON[1].tasks[total] = taskList[i];
+    existingJSON[1].total = total + i + 1;
+    existingJSON[1].tasks[total + i] = taskList[i];
     console.log(existingJSON[1]["tasks"]);
   }
   return existingJSON;
