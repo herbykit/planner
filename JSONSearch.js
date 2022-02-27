@@ -74,7 +74,6 @@ function pushGrocery(ID, name, amount, size) {
       throw "Incorrect unit";
     JSONObject[3]["groceries"][0][name].amount =
       JSONObject[3]["groceries"][0][name].amount + amount;
-    JSONObject[3]["groceries"][0][name].size = size;
     fileHandler.SaveJSON(ID, JSONObject);
 
     return JSONObject;
