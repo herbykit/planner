@@ -90,6 +90,7 @@ function translateGrocery(groceries = combineItems()) {
   // by the time it gets to here. Inserts the values into the right place.
 
   // Put groceries in a list... and return groceries... but combineItems does that...
+  if (!groceries) return {};
   return groceries;
 }
 
