@@ -9,8 +9,12 @@ function searchRecipes(name, ID) {
   let JSONObject = fileHandler.GrabJSON(ID);
 
   // search for the recipe..
-  if (JSONTranslate.getSubArray(JSONObject[2]["recipes"], name)) return true;
-  else return false;
+  console.log(Object.keys(JSONObject[2]["recipes"][0]));
+  if (name in JSONObject[2]["recipes"][0]) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // Code to search for repeated grocery names
@@ -19,19 +23,13 @@ function searchGroceries(name, ID) {
   // 3 is groceries
   let JSONObject = fileHandler.GrabJSON(ID);
 
-  console.log(
-    Object.keys(
-      JSONTranslate.getSubArray(JSONObject[3]["groceries"], name)
-    )[0] === name
-  );
   // search for the grocery
-  if (
-    Object.keys(
-      JSONTranslate.getSubArray(JSONObject[3]["groceries"], name)
-    )[0] === name
-  )
+  console.log(Object.keys(JSONObject[3]["groceries"][0]));
+  if (name in JSONObject[3]["groceries"][0]) {
     return true;
-  else return false;
+  } else {
+    return false;
+  }
 }
 
 function pushRecipe(ID, recipeName, ingredientList, instructions = "") {
@@ -42,18 +40,25 @@ function pushRecipe(ID, recipeName, ingredientList, instructions = "") {
     // does it actually need to delete old data?
     let JSONObject = fileHandler.GrabJSON(ID);
 
-    JSONObject[2][recipeName].ingredients = ingredientList;
-    JSONObject[2][recipeName].instructions = instructions;
+    console.log(JSONObject[2]["recipes"][0][recipeName]);
+
+    JSONObject[2]["recipes"][0][recipeName].ingredients = ingredientList;
+    JSONObject[2]["recipes"][0][recipeName].instructions = instructions;
+
+    fileHandler.SaveJSON(ID, JSONObject);
 
     return JSONObject;
   } else {
     // Create totally new recipe
     // addToRecipe
-    return JSONConversion.addToRecipe(
+    let result = JSONConversion.addToRecipe(
       fileHandler.GrabJSON(ID),
       JSONTranslate.translateRecipe([
         JSONTranslate.createRecipe(recipeName, ingredientList, instructions),
-      ]);
+      ])
+    );
+    fileHandler.SaveJSON(ID, result);
+    return result;
   }
 }
 
@@ -65,26 +70,25 @@ function pushGrocery(ID, name, amount, size) {
     // Get the current item amount and set it to that much more?
     let JSONObject = fileHandler.GrabJSON(ID);
 
-    if (JSONObject[3][name].size.equals(size)) throw "Incorrect unit";
-    JSONObject[3][name].amount = JSONObject[3][name].amount + amount;
-    JSONObject[3][name].size = size;
+    if (JSONObject[3]["groceries"][0][name].size != size)
+      throw "Incorrect unit";
+    JSONObject[3]["groceries"][0][name].amount =
+      JSONObject[3]["groceries"][0][name].amount + amount;
+    JSONObject[3]["groceries"][0][name].size = size;
+    fileHandler.SaveJSON(ID, JSONObject);
+
+    return JSONObject;
   } else {
     // Add totally new item
     // addToGrocery
-    console.log(
-      name +
-        " with the amoutn of " +
-        amount +
-        " and size of " +
-        size +
-        " was perceived as normal"
-    );
-    return JSONConversion.addToGrocery(
+    let result = JSONConversion.addToGrocery(
       fileHandler.GrabJSON(ID),
       JSONTranslate.translateGrocery([
         JSONTranslate.getItemSyntax(name, amount, size),
       ])
     );
+    fileHandler.SaveJSON(ID, result);
+    return result;
   }
 }
 
