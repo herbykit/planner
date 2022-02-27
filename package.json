@@ -458,6 +458,7 @@
     "queue-microtask": "^1.2.3",
     "quick-lru": "^5.1.1",
     "rcedit": "^3.0.1",
+    "react": "^17.0.2",
     "react-is": "^17.0.2",
     "read-pkg": "^2.0.0",
     "read-pkg-up": "^2.0.0",
