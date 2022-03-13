@@ -7,6 +7,10 @@
       rel="stylesheet"
       href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
     />
+    <link
+      rel="stylesheet"
+      href="https://bootswatch.com/5/minty/bootstrap.css"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
     <script
@@ -46,11 +50,31 @@
     <!-- The navigation menu in basic form -->
     <ul class="nav nav-tabs row">
       <li class="active col-sm-3">
-        <a data-toggle="tab" href="#home">Settings</a>
+        <a
+          style="font-size: medium"
+          class="text-decoration-none"
+          data-toggle="tab"
+          href="#home"
+          >Settings</a
+        >
       </li>
-      <li class="col-sm-3"><a data-toggle="tab" href="#menu-1">Recipes</a></li>
       <li class="col-sm-3">
-        <a data-toggle="tab" href="#menu-2">Groceries</a>
+        <a
+          style="font-size: medium"
+          class="text-decoration-none"
+          data-toggle="tab"
+          href="#menu-1"
+          >Recipes</a
+        >
+      </li>
+      <li class="col-sm-3">
+        <a
+          style="font-size: medium"
+          class="text-decoration-none"
+          data-toggle="tab"
+          href="#menu-2"
+          >Groceries</a
+        >
       </li>
     </ul>
 
@@ -58,7 +82,7 @@
       <div id="home" class="tab-pane fade in active">
         <h3>Settings</h3>
         <!-- Create all settings content to reference here -->
-        <p>Some content.</p>
+        <p class="text-secondary">Some content.</p>
       </div>
       <div id="menu-1" class="tab-pane fade">
         <h3>So uh, React isn't working atm.</h3>
@@ -74,7 +98,7 @@
                - Table hidden when nothing is missing
           - add recipe default top area
         -->
-        <p>Some content in menu 1.</p>
+        <p class="text-secondary">ok hi</p>
       </div>
       <div id="menu-2" class="tab-pane fade">
         <h3>Groceries</h3>
@@ -87,7 +111,7 @@
             - Option in settings to determine how many types there are
           - add grocery default top area
         -->
-        <p>Some content in menu 2.</p>
+        <p class="text-secondary">Some content in menu 2.</p>
       </div>
     </div>
     <!-- You can also require other files to run in this process -->
